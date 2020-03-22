@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/gamebloc.dart';
 
 class Puzzle extends StatefulWidget {
   final String guessWord;
 
-  const Puzzle({Key key, this.guessWord}) : super(key: key);
+  final GameStageBloc gameStageBloc;
+
+  const Puzzle({Key key, this.guessWord, @required this.gameStageBloc})
+      : super(key: key);
 
   @override
   _PuzzleState createState() => _PuzzleState();
@@ -11,39 +15,48 @@ class Puzzle extends StatefulWidget {
 
 class _PuzzleState extends State<Puzzle> {
 
-  int _selectedBoxIndex = 0;
-
-  void _updateSelectedIndex(int i) {
-    setState(() {
-      _selectedBoxIndex = i;
-    });
-  }
   @override
   Widget build(BuildContext context) {
+    return StreamBuilder(
+        stream: widget.gameStageBloc.guessedCharacters,
+        builder: (BuildContext ctxt,
+            AsyncSnapshot<List<String>> guessedLettersSnap) {
+          if (!guessedLettersSnap.hasData) return CircularProgressIndicator();
+
+          return Container(
+              child: Wrap(
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: List.generate(widget.guessWord.length, (i) {
+                    var letter = widget.guessWord[i];
+                    var letterGuessedCorrectly =
+                        guessedLettersSnap.data.contains(letter);
+
+                    return _buildSingleCharacterBox(
+                        letter, letterGuessedCorrectly);
+                  })));
+        });
+  }
+
+  Widget _buildSingleCharacterBox(String letter, bool letterGuessedCorrectly) {
     return Container(
-       child: Wrap(
-         spacing: 8.0,
-         runSpacing: 8.0,
-         children: List.generate(widget.guessWord.length, (i) {
-           return _buildSingleCharacterBox(i);
-         })
-       ),
+      height: 48.0,
+      width: 48.0,
+      decoration: BoxDecoration(
+          color: letterGuessedCorrectly ? Colors.limeAccent : Colors.white,
+          borderRadius: BorderRadius.circular(4.0)),
+      child: letterGuessedCorrectly
+          ? Center(
+              child: Text(
+                letter,
+                style: _guessedCharacterStyle,
+                textAlign: TextAlign.center,
+              ),
+            )
+          : null,
     );
   }
 
-  Widget _buildSingleCharacterBox(int index) {
-    return GestureDetector(
-      onTap: () {
-        _updateSelectedIndex(index);
-      },
-      child: Container(
-        height: 48.0,
-        width: 48.0,
-        decoration: BoxDecoration(
-          color: index == _selectedBoxIndex ? Colors.limeAccent : Colors.white,
-          borderRadius: BorderRadius.circular(4.0)
-        ),
-      ),
-    );
-  }
+  TextStyle _guessedCharacterStyle =
+      TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
 }

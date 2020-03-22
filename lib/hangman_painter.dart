@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/enum_collection.dart';
+import 'package:hangman/gamebloc.dart';
 
 enum Limb {
   left, right
 }
 // A custom painter for the app. 
 class HangmanPainter extends CustomPainter {
+  final GameStageBloc _gameStageBloc;
+  
+  HangmanPainter(this._gameStageBloc);
+
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint();
@@ -14,12 +20,24 @@ class HangmanPainter extends CustomPainter {
     _drawFrame(canvas, size, paint);
     _drawNoose(canvas, size, paint);
 
-    _drawHead(canvas, size, paint);
-    _drawBody(canvas, size, paint);
-    _drawLeg(canvas, size, paint, Limb.left);
-    _drawLeg(canvas, size, paint, Limb.right);
-    _drawHand(canvas, size, paint, Limb.left);
-    _drawHand(canvas, size, paint, Limb.right);
+    if(_gameStageBloc.lostParts.value.contains(BodyPart.head)) {
+      _drawHead(canvas, size, paint);
+    }
+    if(_gameStageBloc.lostParts.value.contains(BodyPart.body)) {
+      _drawBody(canvas, size, paint);
+    }
+    if(_gameStageBloc.lostParts.value.contains(BodyPart.leftLeg)) {
+      _drawLeg(canvas, size, paint, Limb.left);
+    }
+    if(_gameStageBloc.lostParts.value.contains(BodyPart.rightLeg)) {
+      _drawLeg(canvas, size, paint, Limb.right);
+    }
+    if(_gameStageBloc.lostParts.value.contains(BodyPart.leftHand)) {
+      _drawHand(canvas, size, paint, Limb.left);
+    }
+    if(_gameStageBloc.lostParts.value.contains(BodyPart.rightHand)) {
+      _drawHand(canvas, size, paint, Limb.right);
+    }
   }
   // Function to draw the noose
   _drawNoose(Canvas canvas, Size size, Paint paint) {
