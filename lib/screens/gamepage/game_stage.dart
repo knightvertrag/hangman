@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hangman/enum_collection.dart';
-import 'package:hangman/gamebloc.dart';
-import 'package:hangman/puzzle.dart';
-import 'package:hangman/hangman_painter.dart';
+import 'package:hangman/shared/enum_collection.dart';
+import 'package:hangman/services/gamebloc.dart';
+import 'package:hangman/widgets/puzzle.dart';
+import 'package:hangman/widgets/hangman_painter.dart';
 
-import 'character_picker.dart';
+import 'package:hangman/widgets/character_picker.dart';
 
 class VerticalGameStage extends StatefulWidget {
   @override

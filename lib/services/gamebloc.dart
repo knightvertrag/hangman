@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:hangman/hangman_words.dart';
+import 'package:hangman/shared/hangman_words.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'enum_collection.dart';
+import 'package:hangman/shared/enum_collection.dart';
 
 class GameStageBloc {
   ValueNotifier<GameState> curGameState = ValueNotifier<GameState>(GameState.idle);

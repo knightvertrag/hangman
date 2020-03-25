@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hangman/splash.dart';
+import 'package:hangman/screens/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:hangman/services/auth.dart';
 import 'package:hangman/models/user.dart';

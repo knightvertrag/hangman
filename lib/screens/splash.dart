@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:hangman/wrapper.dart';
+import 'package:hangman/services/wrapper.dart';
 
 //import 'game_stage.dart';
 

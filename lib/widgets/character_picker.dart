@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hangman/gamebloc.dart';
+import 'package:hangman/services/gamebloc.dart';
 
 class CharacterPicker extends StatefulWidget {
   final GameStageBloc gameStageBloc;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hangman/enum_collection.dart';
-import 'package:hangman/gamebloc.dart';
+import 'package:hangman/shared/enum_collection.dart';
+import 'package:hangman/services/gamebloc.dart';
 
 class VertHangManPainter extends CustomPainter {
   final GameStageBloc _gameStageBloc;

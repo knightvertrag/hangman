@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hangman/gamebloc.dart';
+import 'package:hangman/services/gamebloc.dart';
 
 
 // This widget is the puzzle space
