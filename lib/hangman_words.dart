@@ -87,7 +87,7 @@ class GuessWordHelper {
 
     var randomGenerator = Random();
     var randomIndex = randomGenerator.nextInt(_words.length);
-    print(_words);
+    //print(_words);
     return _words[randomIndex].toUpperCase();
   }
 }
