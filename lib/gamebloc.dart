@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:hangman/hangman_words.dart';
-import 'package:rxdart/subjects.dart';
-
+import 'package:rxdart/rxdart.dart';
 
 import 'enum_collection.dart';
 
@@ -9,20 +8,25 @@ class GameStageBloc {
   ValueNotifier<GameState> curGameState = ValueNotifier<GameState>(GameState.idle);
   ValueNotifier<String> curGuessWord = ValueNotifier<String>(''); 
   ValueNotifier<List<BodyPart>> lostParts = ValueNotifier<List<BodyPart>>([]);
-
-  var _guessedCharactersController = BehaviorSubject<List<String>>(); // false notification
+  var _guessedCharactersController = BehaviorSubject<List<String>>();
   Stream<List<String>> get guessedCharacters => _guessedCharactersController.stream;  
 
   void createNewGame() {
     curGameState.value = GameState.running;
-    lostParts.value.clear(); //no body parts lost yet
-    var guessWord = GuessWordHelper().generateRandomWord(); //generate the word to be guessed
+    lostParts.value.clear();
+    var guessWord = GuessWordHelper().generateRandomWord();
+    print(guessWord);
     curGuessWord.value = guessWord;
     _guessedCharactersController.sink.add([]);
   }
 
+  void updateGuessedCharacter(List<String> updatedGuessedCharacters) {
+    _guessedCharactersController.sink.add(updatedGuessedCharacters);
+    _concludeGameOnWordGuessedCorrectly(updatedGuessedCharacters);
+  }
+
   void _concludeGameOnWordGuessedCorrectly(List<String> guessedCharacters) {
-    // check if user identified all correct words    
+    //check if user identified all correct words    
     var allValuesIdentified = true;
     var characters = curGuessWord.value.split('');
     characters.forEach((letter) {
@@ -36,12 +40,7 @@ class GameStageBloc {
       curGameState.value = GameState.succeeded;
     }
   }
-  // function to update characters already guessed so the character buttons can be greyed out.
-  void updateGuessedCharacter(List<String> updatedGuessedCharacters) {
-    _guessedCharactersController.sink.add(updatedGuessedCharacters);
-    _concludeGameOnWordGuessedCorrectly(updatedGuessedCharacters);
-  }
-  // function to track and update cazzed body parts.
+
   void updateLostBodyParts() {
     print('removing ');
     if(!lostParts.value.contains(BodyPart.head)) {
@@ -82,5 +81,9 @@ class GameStageBloc {
       curGameState.value = GameState.failed;
       return;
     }
+  }
+
+  dispose() {
+    _guessedCharactersController.close();
   }
 }

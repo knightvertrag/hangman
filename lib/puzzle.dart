@@ -19,7 +19,7 @@ class _PuzzleState extends State<Puzzle> {
   Widget build(BuildContext context) {
     return StreamBuilder(
         stream: widget.gameStageBloc.guessedCharacters,
-        builder: (BuildContext ctxt,
+        builder: (BuildContext context,
             AsyncSnapshot<List<String>> guessedLettersSnap) {
           if (!guessedLettersSnap.hasData) return CircularProgressIndicator();
 

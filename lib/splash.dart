@@ -16,7 +16,7 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => GameStage(),
+        builder: (context) => VerticalGameStage(),
       ));
     });
   }
