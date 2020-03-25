@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hangman/gamebloc.dart';
 
+
+// This widget is the puzzle space
 class Puzzle extends StatefulWidget {
   final String guessWord;
 

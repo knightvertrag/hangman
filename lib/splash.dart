@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:hangman/wrapper.dart';
 
-import 'game_stage.dart';
-//import 'package:wow_such_quiz/screens/wrapper.dart';
+//import 'game_stage.dart';
+
 
 class Splashscreen extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _SplashscreenState extends State<Splashscreen> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => VerticalGameStage(),
+        builder: (context) => Wrapper(),
       ));
     });
   }
