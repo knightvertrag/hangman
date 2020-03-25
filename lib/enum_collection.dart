@@ -1,8 +1,5 @@
-enum GameState {
-  idle,
-  running,
-  failed,
-  succeeded
+enum Limb {
+  left, right
 }
 
 enum BodyPart {
@@ -12,4 +9,11 @@ enum BodyPart {
   rightLeg,
   leftHand,
   rightHand
+}
+
+enum GameState {
+  idle,
+  running,
+  failed,
+  succeeded
 }
