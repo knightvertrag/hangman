@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hangman/services/auth.dart';
-import 'package:hangman/shared/constants.dart';
 import 'package:hangman/shared/loading.dart';
 
 class SignIn extends StatefulWidget {

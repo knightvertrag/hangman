@@ -8,7 +8,6 @@ import 'package:hangman/screens/authenticate/authenticate.dart';
 class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     final user = Provider.of<User>(context);
 
     //returns either gamescreen or auth depending on login status.
@@ -17,7 +16,5 @@ class Wrapper extends StatelessWidget {
     } else {
       return VerticalGameStage();
     }
-
-    
   }
 }
