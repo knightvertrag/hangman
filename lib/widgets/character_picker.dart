@@ -59,7 +59,7 @@ class _CharacterPickerState extends State<CharacterPicker> {
                 ? Colors.grey
                 : Colors.white,
             borderRadius: BorderRadius.circular(4.0)),
-        child: Center(child: Text(letter)),
+        child: Center(child: Text(letter, style: TextStyle(color: Colors.black),)),
       ),
     );
   }

@@ -60,5 +60,5 @@ class _PuzzleState extends State<Puzzle> {
   }
 
   TextStyle _guessedCharacterStyle =
-      TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black);
 }
