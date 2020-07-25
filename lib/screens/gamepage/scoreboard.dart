@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hangman/models/userscore.dart';
 import 'package:hangman/services/database.dart';
@@ -47,7 +47,6 @@ class _ScorePageState extends State<ScorePage> {
       body: StreamBuilder<List<UserScore>>(
           stream: DatabaseService(uid: user.uid).scores,
           builder: (context, snapshot) {
-
             List<UserScore> userScore = snapshot.data;
             if (snapshot.hasData) {
               return ListView.builder(

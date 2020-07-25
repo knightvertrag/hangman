@@ -154,7 +154,7 @@ class _SignInState extends State<SignIn> {
                           style: TextStyle(color: Colors.red, fontSize: 14.0),
                         ),
                         SizedBox(
-                          height: 165.0,
+                          height: 30.0,
                         ),
                         Row(
                           children: <Widget>[
@@ -166,7 +166,9 @@ class _SignInState extends State<SignIn> {
                                   color: Colors.white),
                             ),
                             GestureDetector(
-                              onTap: () {widget.toggleView();} ,
+                              onTap: () {
+                                widget.toggleView();
+                              },
                               child: Text('register',
                                   style: TextStyle(
                                     fontFamily: "Old English Text MT",

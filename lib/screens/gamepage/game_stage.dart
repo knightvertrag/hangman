@@ -40,55 +40,55 @@ class _VerticalGameStage extends State<VerticalGameStage> {
   Widget build(BuildContext context) {
     var mediaQd = MediaQuery.of(context).size;
     return Scaffold(
-    appBar: AppBar(
-      backgroundColor: Colors.transparent,
-      actions: <Widget>[
-        FlatButton.icon(
-          icon: Icon(
-            Icons.person,
-            color: Colors.white,
-          ),
-          label: Text(
-            'leaderboard',
-            style: TextStyle(color: Colors.white),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => StreamProvider<List<UserScore>>.value(value: DatabaseService().scores, child: ScorePage(),)),
-            );
-          },
-        ),
-        FlatButton.icon(
-          icon: Icon(
-            Icons.person,
-            color: Colors.white,
-          ),
-          label: Text(
-            'logout',
-            style: TextStyle(color: Colors.white),
-          ),
-          onPressed: () async {
-            await _auth.signOut();
-          },
-        )
-      ],
-    ),
-    backgroundColor: Colors.blueGrey[900],
-    body: Container(
-        padding: EdgeInsets.all(24.0),
-        width: mediaQd.width,
-        height: mediaQd.height,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              _buildHangManPainter(),
-              Divider(
-                color: Colors.grey[600],
-                height: 2.0,
+        appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          actions: <Widget>[
+            // FlatButton.icon(
+            //   icon: Icon(
+            //     Icons.person,
+            //     color: Colors.white,
+            //   ),
+            //   label: Text(
+            //     'leaderboard',
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => StreamProvider<List<UserScore>>.value(value: DatabaseService().scores, child: ScorePage(),)),
+            //     );
+            //   },
+            // ),
+            FlatButton.icon(
+              icon: Icon(
+                Icons.person,
+                color: Colors.white,
               ),
-              Expanded(child: _buildMainSection())
-            ])));
+              label: Text(
+                'logout',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: () async {
+                await _auth.signOut();
+              },
+            )
+          ],
+        ),
+        backgroundColor: Colors.blueGrey[900],
+        body: Container(
+            padding: EdgeInsets.all(24.0),
+            width: mediaQd.width,
+            height: mediaQd.height,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _buildHangManPainter(),
+                  Divider(
+                    color: Colors.grey[600],
+                    height: 2.0,
+                  ),
+                  Expanded(child: _buildMainSection())
+                ])));
   }
 
   Widget _buildHangManIntro() {

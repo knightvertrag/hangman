@@ -59,7 +59,7 @@ class _RegisterState extends State<Register> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(
-                        "assets/drawable-xxhdpi/backgroundimg.png"),
+                          "assets/drawable-xxhdpi/backgroundimg.png"),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -154,7 +154,7 @@ class _RegisterState extends State<Register> {
                           style: TextStyle(color: Colors.red, fontSize: 14.0),
                         ),
                         SizedBox(
-                          height: 165.0,
+                          height: 30.0,
                         ),
                         Row(
                           children: <Widget>[
@@ -166,7 +166,9 @@ class _RegisterState extends State<Register> {
                                   color: Colors.white),
                             ),
                             GestureDetector(
-                              onTap: () {widget.toggleView();} ,
+                              onTap: () {
+                                widget.toggleView();
+                              },
                               child: Text('log in',
                                   style: TextStyle(
                                     fontFamily: "Old English Text MT",
