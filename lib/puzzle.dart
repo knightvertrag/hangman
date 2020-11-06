@@ -14,28 +14,32 @@ class Puzzle extends StatefulWidget {
 }
 
 class _PuzzleState extends State<Puzzle> {
-
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: widget.gameStageBloc.guessedCharacters,
-        builder: (BuildContext context,
-            AsyncSnapshot<List<String>> guessedLettersSnap) {
-          if (!guessedLettersSnap.hasData) return CircularProgressIndicator();
+      stream: widget.gameStageBloc.guessedCharacters,
+      builder: (BuildContext context,
+          AsyncSnapshot<List<String>> guessedLettersSnap) {
+        if (!guessedLettersSnap.hasData) return CircularProgressIndicator();
 
-          return Container(
-              child: Wrap(
-                  spacing: 8.0,
-                  runSpacing: 8.0,
-                  children: List.generate(widget.guessWord.length, (i) {
-                    var letter = widget.guessWord[i];
-                    var letterGuessedCorrectly =
-                        guessedLettersSnap.data.contains(letter);
+        return Container(
+          child: Wrap(
+            spacing: 8.0,
+            runSpacing: 8.0,
+            children: List.generate(
+              widget.guessWord.length,
+              (i) {
+                var letter = widget.guessWord[i];
+                var letterGuessedCorrectly =
+                    guessedLettersSnap.data.contains(letter);
 
-                    return _buildSingleCharacterBox(
-                        letter, letterGuessedCorrectly);
-                  })));
-        });
+                return _buildSingleCharacterBox(letter, letterGuessedCorrectly);
+              },
+            ),
+          ),
+        );
+      },
+    );
   }
 
   Widget _buildSingleCharacterBox(String letter, bool letterGuessedCorrectly) {
@@ -58,5 +62,5 @@ class _PuzzleState extends State<Puzzle> {
   }
 
   TextStyle _guessedCharacterStyle =
-      TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black);
 }

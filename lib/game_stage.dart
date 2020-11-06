@@ -45,12 +45,10 @@ class _VerticalGameStage extends State<VerticalGameStage> {
               color: Colors.grey[600],
               height: 2.0,
             ),
-            Expanded(
-              child: _buildMainSection()
-            )
-          ]
-        )
-      )
+            Expanded(child: _buildMainSection())
+          ],
+        ),
+      ),
     );
   }
 
@@ -63,14 +61,17 @@ class _VerticalGameStage extends State<VerticalGameStage> {
           style: TextStyle(
             color: Colors.grey[400],
             fontWeight: FontWeight.bold,
-            fontSize: 60.0
-          )
+            fontSize: 60.0,
+          ),
         ),
         RaisedButton(
-          child: Text('New Game',
-              style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 30.0)),
+          child: Text(
+            'New Game',
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 30.0,
+            ),
+          ),
           onPressed: () {
             _gameStageBloc.createNewGame();
           },
@@ -79,24 +80,28 @@ class _VerticalGameStage extends State<VerticalGameStage> {
     );
   }
 
-  Widget _buildGameEndScreen(GameState gameState) { //false warning
+  //ignore: missing_return
+  Widget _buildGameEndScreen(GameState gameState) {
     if (gameState == GameState.succeeded) {
       return Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text('Well done! You got the right answer.',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.0)),
+          Text(
+            'Well done! You got the right answer.',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 24.0,
+            ),
+          ),
           RaisedButton(
             child: Text('New Game'),
             onPressed: () {
               _gameStageBloc.createNewGame();
             },
           )
-        ]
+        ],
       );
     }
 
@@ -105,27 +110,36 @@ class _VerticalGameStage extends State<VerticalGameStage> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text('Oops you failed!',
-              style: TextStyle(
-                  color: Colors.grey[600],
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0)),
-          Text('The correct word was:',
-              style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 24.0)),
-          Text(_gameStageBloc.curGuessWord.value,
-              style: TextStyle(
-                  color: Colors.grey[400],
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24.0)),
+          Text(
+            'Oops you failed!',
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontWeight: FontWeight.bold,
+              fontSize: 16.0,
+            ),
+          ),
+          Text(
+            'The correct word was:',
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 24.0,
+            ),
+          ),
+          Text(
+            _gameStageBloc.curGuessWord.value,
+            style: TextStyle(
+              color: Colors.grey[400],
+              fontWeight: FontWeight.bold,
+              fontSize: 24.0,
+            ),
+          ),
           RaisedButton(
             child: Text('New Game'),
             onPressed: () {
               _gameStageBloc.createNewGame();
             },
           )
-        ]
+        ],
       );
     }
   }
@@ -136,15 +150,14 @@ class _VerticalGameStage extends State<VerticalGameStage> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Row(
-          mainAxisAlignment:
-              MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Text(
               'Guess the correct word',
               style: TextStyle(
-                  color: Colors.grey[400],
-                  // fontWeight: FontWeight.bold,
-                  fontSize: 18.0),
+                color: Colors.grey[400],
+                fontSize: 18.0,
+              ),
             ),
             IconButton(
               icon: Icon(
@@ -165,7 +178,6 @@ class _VerticalGameStage extends State<VerticalGameStage> {
         CharacterPicker(
           gameStageBloc: _gameStageBloc,
         ),
-        
       ],
     );
   }
@@ -179,14 +191,14 @@ class _VerticalGameStage extends State<VerticalGameStage> {
         }
         return ValueListenableBuilder(
           valueListenable: _gameStageBloc.curGameState,
-          builder: (BuildContext ctxt, GameState gameState,
-              Widget child) {
-            if (gameState == GameState.succeeded || gameState == GameState.failed) {
+          builder: (BuildContext ctxt, GameState gameState, Widget child) {
+            if (gameState == GameState.succeeded ||
+                gameState == GameState.failed) {
               return _buildGameEndScreen(gameState);
             }
 
-            return _buildGamePlayGround(guessWord);              
-          }
+            return _buildGamePlayGround(guessWord);
+          },
         );
       },
     );
@@ -200,15 +212,12 @@ class _VerticalGameStage extends State<VerticalGameStage> {
         border: Border.all(
           color: Colors.grey,
           width: 1.0,
-          style: BorderStyle.solid
+          style: BorderStyle.solid,
         ),
         boxShadow: [
-          BoxShadow(
-            color: Colors.white,
-            blurRadius: 8.0
-          )
+          BoxShadow(color: Colors.white, blurRadius: 8.0),
         ],
-        borderRadius: BorderRadius.circular(16.0)
+        borderRadius: BorderRadius.circular(16.0),
       ),
       margin: EdgeInsets.all(32.0),
       child: Center(
@@ -219,7 +228,7 @@ class _VerticalGameStage extends State<VerticalGameStage> {
             double.infinity,
           ),
         ),
-      )
+      ),
     );
   }
 }
